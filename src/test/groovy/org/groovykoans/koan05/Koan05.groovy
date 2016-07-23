@@ -42,10 +42,12 @@ class Koan05 extends GroovyTestCase {
         def idListResult = []
         // ------------ START EDITING HERE ----------------------
 
+	idToNameMap.each { key, val -> idListResult.add(key + val) }
 
         // ------------ STOP EDITING HERE  ----------------------
         assert idListResult == ['333Matthew', '233Christopher', '133Dominic']
     }
+
 
     void test02_Ranges() {
         // Groovy allows you to create quick lists for sequential values. For example 5..10 or 'a'..'d'
@@ -58,6 +60,7 @@ class Koan05 extends GroovyTestCase {
         def expectedRange = []
         // ------------ START EDITING HERE ----------------------
 
+	expectedRange = [5,6,7,8,9,10]
 
         // ------------ STOP EDITING HERE  ----------------------
         assert range == expectedRange
@@ -71,7 +74,13 @@ class Koan05 extends GroovyTestCase {
         def rangeResult = []
         // ------------ START EDITING HERE ----------------------
 
-
+	def closureAttempt = { input -> 
+	    def x = []
+	    input.eachWithIndex { it, i -> i % 2 == 0 ? x.add(it) : '' }
+	    x
+	}
+	rangeResult = closureAttempt('a'..'z')
+	
         // ------------ STOP EDITING HERE  ----------------------
         assert rangeResult == ['a', 'c', 'e', 'g', 'i', 'k', 'm', 'o', 'q', 's', 'u', 'w', 'y']
     }
