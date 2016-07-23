@@ -36,6 +36,7 @@ class Koan04 extends GroovyTestCase {
         def expectedHelloClosureResult
         // ------------ START EDITING HERE ----------------------
 
+	expectedHelloClosureResult = 'Hello from Closure'
 
         // ------------ STOP EDITING HERE  ----------------------
         assert helloClosureResult == expectedHelloClosureResult
@@ -48,6 +49,7 @@ class Koan04 extends GroovyTestCase {
         String expectedHelloRonalda
         // ------------ START EDITING HERE ----------------------
 
+	expectedHelloRonalda = 'Hello Ronalda'
 
         // ------------ STOP EDITING HERE  ----------------------
         assert helloRonalda == expectedHelloRonalda
@@ -62,6 +64,7 @@ class Koan04 extends GroovyTestCase {
         def expectedHappyBirthdayGranger
         // ------------ START EDITING HERE ----------------------
 
+	expectedHappyBirthdayGranger = "Happy Birthday To Hermione"
 
         // ------------ STOP EDITING HERE  ----------------------
         assert happyBirthdayGranger == expectedHappyBirthdayGranger
@@ -70,6 +73,7 @@ class Koan04 extends GroovyTestCase {
         def resultClosure
         // ------------ START EDITING HERE ----------------------
 
+	resultClosure = { int a, int b -> (a + b) * 2 }
 
         // ------------ STOP EDITING HERE  ----------------------
 
@@ -101,7 +105,8 @@ class Koan04 extends GroovyTestCase {
         // Let's check that we got the same result (you can use the assertX methods)
         // ------------ START EDITING HERE ----------------------
 
-
+	assert javaResult == groovyResult
+	
         // ------------ STOP EDITING HERE  ----------------------
 
         // To make the code even cleaner, Groovy allows some syntactic sugar. If your method has a closure as its
@@ -117,7 +122,7 @@ class Koan04 extends GroovyTestCase {
         def expectedMonkeyColors = []
         // ------------ START EDITING HERE ----------------------
 
-
+	expectedMonkeyColors = ['blue','red','purple']
         // ------------ STOP EDITING HERE  ----------------------
         assert monkeyColors == expectedMonkeyColors
 
@@ -130,6 +135,10 @@ class Koan04 extends GroovyTestCase {
         def prefix = 'src/test/groovy/org/groovykoans/koan04/'
         // ------------ START EDITING HERE ----------------------
 
+	def file = new File("$prefix/exercise.txt")
+	file.filterLine(filteredResult) { String line ->
+	    !line.startsWith('#')
+	}
 
         // ------------ STOP EDITING HERE  ----------------------
 
@@ -148,7 +157,8 @@ class Koan04 extends GroovyTestCase {
         // http://docs.groovy-lang.org/latest/html/groovy-jdk/java/lang/String.html
         def expectedCount
         // ------------ START EDITING HERE ----------------------
-
+	
+	expectedCount = 3
 
         // ------------ STOP EDITING HERE  ----------------------
 
@@ -164,6 +174,7 @@ class Koan04 extends GroovyTestCase {
         def expectedMysteryList
         // ------------ START EDITING HERE ----------------------
 
+	expectedMysteryList = ['Baby', 'Yeah']
 
         // ------------ STOP EDITING HERE  ----------------------
         assert mysteryList == expectedMysteryList
