@@ -27,14 +27,21 @@ class Koan06 extends GroovyTestCase {
         StringBuilder javaStringBuilder = new StringBuilder();
         javaStringBuilder.append("roses are #FF0000\\n");
         javaStringBuilder.append("violets are #0000FF\\n");
-        javaStringBuilder.append("all my base\\n")
-        javaStringBuilder.append("are belong to you\\n")
+        javaStringBuilder.append("all my base\\n");
+        javaStringBuilder.append("are belong to you\\n");
         String javaResult = javaStringBuilder.toString();
 
         // Groovy-fy the above code, using StringBuilder and with() to get the same result in Groovy
         String groovyResult
         // ------------ START EDITING HERE ----------------------
 
+	groovyResult = new StringBuilder().with {
+	    append("roses are #FF0000\\n")
+	    append("violets are #0000FF\\n")
+	    append("all my base\\n")
+	    append("are belong to you\\n")
+	    return it
+	}.toString()
 
         // ------------ STOP EDITING HERE  ----------------------
         assert groovyResult == javaResult
@@ -51,6 +58,7 @@ class Koan06 extends GroovyTestCase {
         def uniqueTypes = []
         // ------------ START EDITING HERE ----------------------
 
+	uniqueTypes = differentTypes.collect { it.class }.unique()
 
         // ------------ STOP EDITING HERE  ----------------------
         assert uniqueTypes == [Integer, String]
@@ -65,6 +73,10 @@ class Koan06 extends GroovyTestCase {
         int count = 0
         // ------------ START EDITING HERE ----------------------
 
+	new File('src').eachFileRecurse { File file ->
+            if (!file.isDirectory() && file.text.contains('Lorem'))
+                count++
+        }
 
         // ------------ STOP EDITING HERE  ----------------------
         assert count == 3
@@ -77,6 +89,11 @@ class Koan06 extends GroovyTestCase {
         def primesBetween200And250 = []
         // ------------ START EDITING HERE ----------------------
 
+	primesBetween200And250 = (200..250).findAll { candidate ->
+            (2..<candidate).every { divisor ->
+                candidate % divisor != 0
+            }
+        }
 
         // ------------ STOP EDITING HERE  ----------------------
         assert primesBetween200And250 == [211, 223, 227, 229, 233, 239, 241]
