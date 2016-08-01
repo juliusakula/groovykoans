@@ -28,8 +28,18 @@ class Koan08 extends GroovyTestCase {
 
         def magicClosure = { input ->
             // ------------ START EDITING HERE ----------------------
-
-
+            def result
+            switch(input){
+                case 1..100:
+                    result = input/2
+                    break
+                case ~/.*ee$/:
+                    result = "${input[0..-3]}ey"
+                    break
+                default:
+                    result = input
+            }
+            result
             // ------------ STOP EDITING HERE  ----------------------
         }
         [5: 2.5, 'smile': 'smile', 'smilee': 'smiley', 'heehee': 'heehey'].each { key, expectedValue ->
@@ -51,7 +61,7 @@ class Koan08 extends GroovyTestCase {
         // For this exercise we have a Cartoon object that has one single feeling.
         // Let's implement a isCase() in Feeling so we can use switch-case on a Cartoon.
 
-        def cartoon = new Cartoon(name: 'Mickey Mouse', feeling: Feeling.Guilty)
+        Cartoon cartoon = new Cartoon(name: 'Mickey Mouse', feeling: Feeling.Guilty)
 
         switch (cartoon) {
             case Feeling.Guilty:
@@ -62,7 +72,7 @@ class Koan08 extends GroovyTestCase {
         }
 
         // Suppose people may have more than one Feeling. Implement the appropriate isCase to allow switching on them
-        def person = new Person(name: 'Jack Bauer', feelings: [Feeling.Suicidal, Feeling.Relaxed])
+        Person person = new Person(name: 'Jack Bauer', feelings: [Feeling.Suicidal, Feeling.Relaxed])
 
         switch (person) {
             case Feeling.Anticipation:
@@ -83,12 +93,13 @@ class Koan08 extends GroovyTestCase {
         // Sometimes you want to return more than one variable from a method. Yes, you could do it with an enclosing
         // class, but that would be an overkill. Groovy calls it Multiple Assignments.
         // http://docs.groovy-lang.org/latest/html/documentation/index.html#_multiple_assignment
-
+        
         // Create a closure that returns two random integers between 0 (inclusive) to maxInt (exclusive)
         def generateTwoRandomInts = { int maxInt ->
             // ------------ START EDITING HERE ----------------------
-
-
+            Random random = new Random()
+            
+            def (a,b) = [random.nextInt(maxInt), random.nextInt(maxInt)]
             // ------------ STOP EDITING HERE  ----------------------
         }
 
